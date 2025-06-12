@@ -1,0 +1,62 @@
+/* pages/mine/mine.wxss */
+.profile-page {
+  background-color: #F3F5F7;
+  min-height: 100vh;
+  padding: 100rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+.nickname {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.label {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.arrow {
+  width: 24rpx;
+  height: 24rpx;
+}

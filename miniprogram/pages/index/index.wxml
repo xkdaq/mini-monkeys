@@ -1,6 +1,5 @@
 <!--index.wxml-->
-<navigation-bar title="倒计时" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="container">
-  <text class="title">距离25考研还剩</text>
+  <text class="title">距离26考研还剩</text>
   <text class="countdown">{{days}}天</text>
 </view>

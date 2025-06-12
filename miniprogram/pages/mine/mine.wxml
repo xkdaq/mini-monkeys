@@ -1,0 +1,21 @@
+<navigation-bar title="个人中心" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="profile-page">
+  <view class="header">
+    <image class="avatar" src="/images/profile-logo.png" />
+    <text class="nickname">猴子不吃柠檬</text>
+  </view>
+
+  <view class="menu">
+    <view class="menu-item" bindtap="goToSettings">
+      <image class="icon" src="/images/icon-settings.png" />
+      <text class="label">设置</text>
+      <image class="arrow" src="/images/icon-arrow-right.png" />
+    </view>
+
+    <view class="menu-item" bindtap="goToAbout">
+      <image class="icon" src="/images/icon-about.png" />
+      <text class="label">关于我们</text>
+      <image class="arrow" src="/images/icon-arrow-right.png" />
+    </view>
+  </view>
+</view>

@@ -7,14 +7,11 @@ Page({
   },
 
   onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: '倒计时' // 设置页面标题
-    });
     this.startCountdown();
   },
 
   startCountdown: function () {
-    const targetDate = new Date("2024-12-21").getTime(); // 目标日期
+    const targetDate = new Date("2025-12-20").getTime(); // 目标日期
     this.updateCountdown(targetDate);
   },
 

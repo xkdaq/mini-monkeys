@@ -1,12 +1,30 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/mine/mine"
   ],
   "window": {
-    "navigationBarTitleText": "倒计时",
-    "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "backgroundColor": "#F3F5F7",
+    "navigationBarTitleText": "TS小程序"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#3EBFBE",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_selected.png"
+      }
+    ]
   },
   "style": "v2",
   "rendererOptions": {
