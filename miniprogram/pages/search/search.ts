@@ -13,7 +13,8 @@ Page({
     pageNum: 1,
     pageSize: 10,
     hasMore: true,
-    loadingMore: false
+    loadingMore: false,
+    hasSearched: false 
   },
 
   onInputChange(e: any) {
@@ -21,13 +22,13 @@ Page({
   },
 
   async onSearch() {
-    this.setData({ pageNum: 1, hasMore: true });
+    this.setData({ pageNum: 1, hasMore: true,hasSearched:true });
     await this.loadList(true);
     wx.stopPullDownRefresh();
   },
 
   async onPullDownRefresh() {
-    this.setData({ pageNum: 1, hasMore: true });
+    this.setData({ pageNum: 1, hasMore: true,hasSearched:true });
     await this.loadList(true);
     wx.stopPullDownRefresh();
   },

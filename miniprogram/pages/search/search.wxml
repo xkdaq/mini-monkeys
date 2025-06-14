@@ -1,14 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="search-page">
   <view class="search-box">
-    <input
-      class="search-input"
-      placeholder="请输入关键词搜索"
-      confirm-type="search"
-      bindinput="onInputChange"
-      bindconfirm="onSearch"
-      value="{{keyword}}"
-    />
+    <input class="search-input" placeholder="请输入关键词搜索" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
   </view>
 
   <view class="list">
@@ -25,4 +18,10 @@
 
     <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
   </view>
+
+  <view wx:if="{{hasSearched && !loadingMore && list.length === 0}}" class="empty-box">
+    <image class="empty-icon" src="/images/icon-empty.png" />
+    <text class="empty-text">暂无数据</text>
+  </view>
+
 </view>
