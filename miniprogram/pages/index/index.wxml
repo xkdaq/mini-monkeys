@@ -1,5 +1,17 @@
-<!--index.wxml-->
-<view class="container">
-  <text class="title">距离26考研还剩</text>
-  <text class="countdown">{{days}}天</text>
+<view class="index-page">
+  <view class="search-box">
+    <input class="search-input" placeholder="请输入关键词搜索" />
+  </view>
+
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="list-item">
+        <text class="title">{{item.title}}</text>
+        <text class="date">{{item.date}}</text>
+      </view>
+      <view class="divider"></view>
+    </block>
+
+    <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
+  </view>
 </view>
