@@ -6,7 +6,10 @@
   <view class="list">
     <block wx:for="{{list}}" wx:key="id">
       <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
-        <text class="title">{{item.title}}</text>
+        <view class="title-box">
+          <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
+          <text class="title">{{item.title}}</text>
+        </view>
         <text class="date">{{item.date}}</text>
       </view>
       <view class="divider"></view>

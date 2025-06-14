@@ -1,6 +1,6 @@
 const BASE_URL = 'https://api.monkeysxu.fun'; // 你自己的接口地址
 
-export function getListData(pageNum: number, pageSize: number): Promise<{ data: { title: string; date: string }[] }> {
+export function getListData(pageNum: number, pageSize: number): Promise<{ data: { title: string; date: string;isTop:number }[] }> {
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${BASE_URL}/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}`,
@@ -12,7 +12,8 @@ export function getListData(pageNum: number, pageSize: number): Promise<{ data: 
           const formattedList = rawList.map((item: any) => ({
             title: item.title,
             date: item.date,
-            id: item.id
+            id: item.id,
+            isTop: item.isTop,
           }));
           resolve({ data: formattedList });
         } else {

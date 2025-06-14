@@ -16,43 +16,58 @@
   }
 
   .list {
-    // height: calc(100vh - 150rpx);
-  }
 
-  .list-item {
-    padding: 24rpx;
-    background-color: #ffffff;
-    border-radius: 16rpx;
-    // margin-bottom: 20rpx;
-    // box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    .list-item {
+      padding: 24rpx;
+      background-color: #ffffff;
+      border-radius: 16rpx;
+      // margin-bottom: 20rpx;
+      // box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
 
-    .title {
-      font-size: 32rpx;
-      font-weight: bold;
-      color: #333;
-      line-height: 44rpx;
-      height: 44rpx; // 1行的高度
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      .title-box {
+        display: flex;
+        align-items: flex-start;
+        gap: 10rpx;
+      }
+  
+      .top-tag {
+        font-size: 13rpx;
+        color: #ffffff;
+        background-color: #FF4D4F;
+        padding: 2rpx 6rpx;
+        border-radius: 6rpx;
+        line-height: 20rpx;
+      }
+
+      .title {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: #333;
+        line-height: 44rpx;
+        height: 44rpx; // 1行的高度
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+  
+      .date {
+        margin-top: 10rpx;
+        font-size: 20rpx;
+        color: #999;
+        text-align: left;
+      }
     }
 
-    .date {
-      margin-top: 10rpx;
-      font-size: 20rpx;
-      color: #999;
-      text-align: left;
+    .divider {
+      height: 1px;
+      background-color: #f0f0f0;
+      margin: 0;
     }
-  }
 
-  .divider {
-    height: 1px;
-    background-color: #f0f0f0;
-    margin: 0;
   }
-
+  
   .loading {
     text-align: center;
     padding: 20rpx;

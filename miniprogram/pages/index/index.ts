@@ -5,7 +5,7 @@ import { getListData } from '../../utils/request';
 
 Page({
   data: {
-    list: [] as { id: string; title: string; date: string }[],
+    list: [] as { id: string; title: string; date: string; isTop: number }[],
     pageNum: 1,
     pageSize: 10,
     hasMore: true,
