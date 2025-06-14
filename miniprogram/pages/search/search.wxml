@@ -1,6 +1,14 @@
-<view class="index-page">
-  <view class="search-box" bindtap="goToSearch">
-    <input class="search-input" placeholder="请输入关键词搜索" />
+<!--pages/search/search.wxml-->
+<view class="search-page">
+  <view class="search-box">
+    <input
+      class="search-input"
+      placeholder="请输入关键词搜索"
+      confirm-type="search"
+      bindinput="onInputChange"
+      bindconfirm="onSearch"
+      value="{{keyword}}"
+    />
   </view>
 
   <view class="list">

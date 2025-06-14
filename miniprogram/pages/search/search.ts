@@ -1,19 +1,29 @@
-// index.ts
-// 获取应用实例
+// pages/search/search.ts
 
-import { getListData } from '../../utils/request';
+import { getArticleList } from '../../utils/request';
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    list: [] as { id: string; title: string; date: string; isTop: number }[],
+    keywords: '',
+    list: [],
     pageNum: 1,
     pageSize: 10,
     hasMore: true,
     loadingMore: false
   },
 
-  async onLoad() {
+  onInputChange(e: any) {
+    this.setData({ keywords: e.detail.value });
+  },
+
+  async onSearch() {
+    this.setData({ pageNum: 1, hasMore: true });
     await this.loadList(true);
+    wx.stopPullDownRefresh();
   },
 
   async onPullDownRefresh() {
@@ -30,10 +40,12 @@ Page({
   },
 
   async loadList(refresh: boolean) {
-    const { pageNum, pageSize, list } = this.data;
+    const { pageNum, pageSize, list, keywords } = this.data;
+    if (!keywords.trim()) return;
+
     try {
       wx.showLoading({ title: '加载中...', mask: true });
-      const res = await getListData(pageNum, pageSize);
+      const res = await getArticleList(pageNum, pageSize, keywords);
 
       const newList = refresh ? res.data : list.concat(res.data);
       const hasMore = res.data.length >= pageSize;
@@ -53,15 +65,66 @@ Page({
 
   onItemTap(e: any) {
     const id = e.currentTarget.dataset.id;
-    console.log('跳转的 id 是：', id);
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`
     });
   },
 
-  goToSearch() {
-    wx.navigateTo({
-      url: '/pages/search/search'
-    });
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
-});
+})
