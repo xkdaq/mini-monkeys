@@ -1,0 +1,5 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-page">
+  <view class="title">{{title}}</view>
+  <web-view src="{{webviewUrl}}" />
+</view>

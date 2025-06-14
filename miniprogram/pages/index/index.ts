@@ -49,5 +49,12 @@ Page({
       wx.hideLoading();
       wx.stopPullDownRefresh(); // 避免下拉刷新时 loading 停不掉
     }
+  },
+
+  onItemTap(e: any) {
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${id}`
+    });
   }
 });

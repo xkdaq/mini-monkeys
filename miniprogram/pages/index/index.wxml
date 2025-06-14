@@ -5,7 +5,7 @@
 
   <view class="list">
     <block wx:for="{{list}}" wx:key="id">
-      <view class="list-item">
+      <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
         <text class="title">{{item.title}}</text>
         <text class="date">{{item.date}}</text>
       </view>

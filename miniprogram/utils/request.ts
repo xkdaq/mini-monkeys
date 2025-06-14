@@ -28,3 +28,24 @@ export function getListData(pageNum: number, pageSize: number): Promise<{ data: 
     });
   });
 }
+
+export function getArticleDetail(id: number): Promise<{ title: string; content: string }> {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${BASE_URL}/api/article/${id}`,
+      method: 'GET',
+      success(res) {
+        if (res.data.code === 0) {
+          const { title, content } = res.data;
+          resolve({ title, content });
+        } else {
+          wx.showToast({ title: '获取详情失败', icon: 'none' });
+          reject(res.data);
+        }
+      },
+      fail(err) {
+        wx.showToast({ title: '网络错误', icon: 'none' });
+        reject(err);
+      }
+    });
+  });
