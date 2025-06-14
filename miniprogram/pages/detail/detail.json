@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "文章详情"
+  "navigationBarTitleText": "文章详情",
+  "navigationBarBackgroundColor": "#3EBFBE",
+  "navigationBarTextStyle": "white" ,
+  "usingComponents": {
+    "mp-html": "mp-html"
+  }
 }

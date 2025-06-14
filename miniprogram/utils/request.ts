@@ -11,7 +11,8 @@ export function getListData(pageNum: number, pageSize: number): Promise<{ data: 
           const rawList = res.data.rows || [];
           const formattedList = rawList.map((item: any) => ({
             title: item.title,
-            date: item.date
+            date: item.date,
+            id: item.id
           }));
           resolve({ data: formattedList });
         } else {
@@ -29,14 +30,14 @@ export function getListData(pageNum: number, pageSize: number): Promise<{ data: 
   });
 }
 
-export function getArticleDetail(id: number): Promise<{ title: string; content: string }> {
+export function getArticleDetail(id: String): Promise<{ title: string; content: string }> {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: `${BASE_URL}/api/article/${id}`,
-      method: 'GET',
+      url: `${BASE_URL}/api/article/details?id=${id}`,
+      method: 'POST',
       success(res) {
-        if (res.data.code === 0) {
-          const { title, content } = res.data;
+        if (res.data.code === 0 && res.data.data) {
+          const { title, content } = res.data.data;
           resolve({ title, content });
         } else {
           wx.showToast({ title: '获取详情失败', icon: 'none' });
@@ -49,3 +50,4 @@ export function getArticleDetail(id: number): Promise<{ title: string; content: 
       }
     });
   });
+}

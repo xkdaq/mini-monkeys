@@ -15,32 +15,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    const id = options.id;
-    if (!id) {
-      wx.showToast({ title: '参数错误', icon: 'none' });
-      return;
-    }
-    this.loadDetail(id);
-  },
-
-  async loadDetail(id: number) {
-    try {
-      wx.showLoading({ title: '加载中' });
-
-      const res = await getArticleDetail(id);
-
-      const encodedContent = encodeURIComponent(res.content);
-      const webviewUrl = `https://api.monkeysxu.fun/webview?html=${encodedContent}`;
-
-      this.setData({
-        title: res.title,
-        webviewUrl
-      });
-    } catch (err) {
-      console.error('详情加载失败：', err);
-    } finally {
-      wx.hideLoading();
+  async onLoad(options) {
+    const id = options?.id;
+    console.log('拿到的 id 是：', id);
+    if (id) {
+      try {
+        const res = await getArticleDetail(id);
+        console.log('res.title 是：', id);
+        console.log('res.content 是：', id);
+        this.setData({
+          title: res.title,
+          htmlContent: res.content
+        });
+      } catch (e) {
+        wx.showToast({ title: '加载失败', icon: 'none' });
+      }
     }
   },
 

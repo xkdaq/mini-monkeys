@@ -1,0 +1,41 @@
+/* pages/setting/setting.wxss */
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  height: 100vh;
+  padding-top: 100rpx;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 10;
+}
+
+.content {
+  margin-top: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.version {
+  font-size: 28rpx;
+  color: #666666;
+}

@@ -1,0 +1,7 @@
+<!--pages/setting/setting.wxml-->
+<view class="settings-page">
+  <view class="content">
+    <image class="logo" src="/images/logo.png" mode="aspectFit" />
+    <text class="version">版本号：{{version}}</text>
+  </view>
+</view>

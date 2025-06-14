@@ -53,6 +53,7 @@ Page({
 
   onItemTap(e: any) {
     const id = e.currentTarget.dataset.id;
+    console.log('跳转的 id 是：', id);
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`
     });

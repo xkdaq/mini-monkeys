@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/mine/mine",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundColor": "#F3F5F7",

@@ -8,6 +8,13 @@ Page({
 
   },
 
+  // 点击“设置”按钮跳转设置页面
+  goToSettings() {
+    wx.navigateTo({
+      url: '/pages/setting/setting' // 确保这个路径存在
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
