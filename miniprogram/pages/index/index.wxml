@@ -5,7 +5,7 @@
 
   <view class="list">
     <block wx:for="{{list}}" wx:key="id">
-      <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
+      <view class="list-item" bindtap="onItemTap" data-item="{{item}}">
         <view class="title-box">
           <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
           <text class="title">{{item.title}}</text>

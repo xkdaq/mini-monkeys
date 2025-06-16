@@ -1,6 +1,14 @@
 const BASE_URL = 'https://api.monkeysxu.fun'; // 你自己的接口地址
 
-export function getListData(pageNum: number, pageSize: number): Promise<{ data: { title: string; date: string;isTop:number }[] }> {
+export function getListData(pageNum: number, pageSize: number): Promise<{
+  data: {
+    title: string;
+    date: string;
+    isTop: number;
+    type: number;
+    content: string;
+  }[]
+}> {
   console.log('请求页码：', pageNum);
   return new Promise((resolve, reject) => {
     wx.request({
@@ -15,6 +23,8 @@ export function getListData(pageNum: number, pageSize: number): Promise<{ data: 
             date: item.date,
             id: item.id,
             isTop: item.isTop,
+            type: item.type,        // 加上 type
+            content: item.content   // 加上 content
           }));
           resolve({ data: formattedList });
         } else {
@@ -54,7 +64,7 @@ export function getArticleDetail(id: String): Promise<{ title: string; content: 
   });
 }
 
-export function getArticleList(pageNum: number, pageSize: number,keywords?: string): Promise<{ data: { title: string; date: string;isTop:number }[] }> {
+export function getArticleList(pageNum: number, pageSize: number, keywords?: string): Promise<{ data: { title: string; date: string; isTop: number }[] }> {
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${BASE_URL}/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&keywords=${keywords}`,

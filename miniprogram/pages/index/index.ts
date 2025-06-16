@@ -59,11 +59,28 @@ Page({
   },
 
   onItemTap(e: any) {
-    const id = e.currentTarget.dataset.id;
+    // const id = e.currentTarget.dataset.id;
+    const item = e.currentTarget.dataset.item;
+    const { id, type, content } = item;
     console.log('跳转的 id 是：', id);
-    wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`
-    });
+    if (type === 3) {
+      // content 是目标小程序的 appId
+      wx.navigateToMiniProgram({
+        appId: content, // 👈 直接使用 item.content
+        path: '',       // 可选，目标小程序内路径
+        success() {
+          console.log('跳转成功');
+        },
+        fail(err) {
+          console.error('跳转失败', err);
+          wx.showToast({ title: '跳转失败', icon: 'none' });
+        }
+      });
+    } else {
+      wx.navigateTo({
+        url: `/pages/detail/detail?id=${id}`
+      });
+    }
   },
 
   goToSearch() {
