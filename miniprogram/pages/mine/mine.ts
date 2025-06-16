@@ -65,9 +65,24 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
+   * 分享好友
    */
   onShareAppMessage() {
+    const accountInfo = wx.getAccountInfoSync();
+    const title = `${accountInfo.miniProgram.appName || '小程序'}：猴哥星球`;
+    return {
+      title: title
+    };
+  },
 
+  /**
+   * 分享朋友圈
+   */
+  onShareTimeline() {
+    const accountInfo = wx.getAccountInfoSync();
+    const title = `${accountInfo.miniProgram.appName || '小程序'}：猴哥星球`;
+    return {
+      title: title
+    };
   }
 })

@@ -30,7 +30,14 @@ Page({
   },
 
   async loadList(refresh: boolean) {
-    const { pageNum, pageSize, list } = this.data;
+    let { pageNum, pageSize, list } = this.data;
+
+    if (!refresh) {
+      pageNum += 1;
+    } else {
+      pageNum = 1;
+    }
+
     try {
       wx.showLoading({ title: '加载中...', mask: true });
       const res = await getListData(pageNum, pageSize);
@@ -40,7 +47,7 @@ Page({
 
       this.setData({
         list: newList,
-        pageNum: refresh ? 1 : pageNum + 1,
+        pageNum: pageNum,
         hasMore
       });
     } catch (error) {
@@ -63,5 +70,27 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search'
     });
+  },
+
+  /**
+   * 分享好友
+   */
+  onShareAppMessage() {
+    const accountInfo = wx.getAccountInfoSync();
+    const title = `${accountInfo.miniProgram.appName || '小程序'}：猴哥星球`;
+    return {
+      title: title
+    };
+  },
+
+  /**
+   * 分享朋友圈
+   */
+  onShareTimeline() {
+    const accountInfo = wx.getAccountInfoSync();
+    const title = `${accountInfo.miniProgram.appName || '小程序'}：猴哥星球`;
+    return {
+      title: title
+    };
   }
 });
