@@ -1,5 +1,9 @@
 <!--pages/detail/detail.wxml-->
 <view class="detail-page">
   <view class="title">{{title}}</view>
-  <mp-html content="{{htmlContent}}" />
+  <mp-html content="{{htmlContent}}" selectable="true" bindlinktap="onLinkTap"/>
+
+  <!-- <view wx:if="{{type == 4}}" class="copy-btn-box">
+    <button class="copy-btn" bindtap="onCopyContent">复制</button>
+  </view> -->
 </view>

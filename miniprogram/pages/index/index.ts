@@ -63,10 +63,17 @@ Page({
     const item = e.currentTarget.dataset.item;
     const { id, type, content } = item;
     console.log('跳转的 id 是：', id);
-    if (type === 3) {
-      // content 是目标小程序的 appId
+    const isHTML = /<\/?[a-z][\s\S]*>/i.test(content);
+    const contentNew = isHTML ? content.replace(/<[^>]+>/g, '') : content;
+    if (type === 1) {
+      //1 打开外部链接
+      wx.navigateTo({
+        url: `/pages/webview/webview?url=${encodeURIComponent(contentNew)}`
+      });
+    } else if (type === 3) {
+      //3 打开其他小程序
       wx.navigateToMiniProgram({
-        appId: content, // 👈 直接使用 item.content
+        appId: contentNew, // 👈 直接使用 item.content
         path: '',       // 可选，目标小程序内路径
         success() {
           console.log('跳转成功');
@@ -77,8 +84,9 @@ Page({
         }
       });
     } else {
+      //0 跳转到详情页面  4网盘链接 复制按钮（待做）
       wx.navigateTo({
-        url: `/pages/detail/detail?id=${id}`
+        url: `/pages/detail/detail?id=${id}&type=${type}`
       });
     }
   },

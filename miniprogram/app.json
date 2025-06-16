@@ -4,7 +4,8 @@
     "pages/mine/mine",
     "pages/detail/detail",
     "pages/setting/setting",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/webview/webview"
   ],
   "window": {
     "backgroundColor": "#F3F5F7",
