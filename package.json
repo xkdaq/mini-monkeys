@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "mp-html": "^2.5.1"
   },
   "devDependencies": {
