@@ -19,7 +19,7 @@
     <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
   </view>
 
-  <view wx:if="{{hasSearched && !loadingMore && list.length === 0}}" class="empty-box">
+  <view wx:if="{{!loadingMore && list.length === 0}}" class="empty-box">
     <image class="empty-icon" src="/images/icon-empty.png" />
     <text class="empty-text">暂无数据</text>
   </view>

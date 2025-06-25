@@ -11,10 +11,9 @@ Page({
     keywords: '',
     list: [],
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 12,
     hasMore: true,
-    loadingMore: false,
-    hasSearched: false 
+    loadingMore: false
   },
 
   onInputChange(e: any) {
@@ -22,27 +21,35 @@ Page({
   },
 
   async onSearch() {
-    this.setData({ pageNum: 1, hasMore: true,hasSearched:true });
+    this.setData({ pageNum: 1, hasMore: true });
     await this.loadList(true);
     wx.stopPullDownRefresh();
   },
 
   async onPullDownRefresh() {
-    this.setData({ pageNum: 1, hasMore: true,hasSearched:true });
+    this.setData({ pageNum: 1, hasMore: true });
     await this.loadList(true);
     wx.stopPullDownRefresh();
   },
 
   async onReachBottom() {
+    console.log('onReachBottom1');
     if (!this.data.hasMore || this.data.loadingMore) return;
+    console.log('onReachBottom2');
     this.setData({ loadingMore: true });
     await this.loadList(false);
     this.setData({ loadingMore: false });
   },
 
   async loadList(refresh: boolean) {
-    const { pageNum, pageSize, list, keywords } = this.data;
+    let { pageNum, pageSize, list, keywords } = this.data;
     if (!keywords.trim()) return;
+
+    if (!refresh) {
+      pageNum += 1;
+    } else {
+      pageNum = 1;
+    }
 
     try {
       wx.showLoading({ title: '加载中...', mask: true });
@@ -53,8 +60,8 @@ Page({
 
       this.setData({
         list: newList,
-        pageNum: refresh ? 1 : pageNum + 1,
-        hasMore
+        pageNum: pageNum,
+        hasMore: hasMore
       });
     } catch (error) {
       console.error('加载失败:', error);
@@ -65,67 +72,34 @@ Page({
   },
 
   onItemTap(e: any) {
-    const id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`
-    });
-  },
-
-
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    const item = e.currentTarget.dataset.item;
+    const { id, type, content } = item;
+    console.log('跳转的 id 是：', id);
+    const isHTML = /<\/?[a-z][\s\S]*>/i.test(content);
+    const contentNew = isHTML ? content.replace(/<[^>]+>/g, '') : content;
+    if (type === 1) {
+      //1 打开外部链接
+      wx.navigateTo({
+        url: `/pages/webview/webview?url=${encodeURIComponent(contentNew)}`
+      });
+    } else if (type === 3) {
+      //3 打开其他小程序
+      wx.navigateToMiniProgram({
+        appId: contentNew, // 👈 直接使用 item.content
+        path: '',       // 可选，目标小程序内路径
+        success() {
+          console.log('跳转成功');
+        },
+        fail(err) {
+          console.error('跳转失败', err);
+          wx.showToast({ title: '跳转失败', icon: 'none' });
+        }
+      });
+    } else {
+      //0 跳转到详情页面  4网盘链接 复制按钮（待做）
+      wx.navigateTo({
+        url: `/pages/detail/detail?id=${id}&type=${type}`
+      });
+    }
   }
 })

@@ -7,7 +7,7 @@ Page({
   data: {
     list: [] as { id: string; title: string; date: string; isTop: number }[],
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 12,
     hasMore: true,
     loadingMore: false
   },
@@ -48,7 +48,7 @@ Page({
       this.setData({
         list: newList,
         pageNum: pageNum,
-        hasMore
+        hasMore: hasMore
       });
     } catch (error) {
       console.error('加载失败:', error);
