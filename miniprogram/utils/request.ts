@@ -2,8 +2,19 @@
 import CryptoJS from 'crypto-js';
 
 const BASE_URL = 'https://api.monkeysxu.fun'; // 你自己的接口地址
-const AES_KEY = CryptoJS.enc.Utf8.parse('47ccmuRaEWyYFmVn'); // 16位密钥
-const AES_IV = CryptoJS.enc.Utf8.parse('K5i9TbRSthzaQ5Hm');  // 16位 IV（视后端设置）
+// const AES_KEY = CryptoJS.enc.Utf8.parse('47ccmuRaEWyYFmVn'); // 16位密钥
+// const AES_IV = CryptoJS.enc.Utf8.parse('K5i9TbRSthzaQ5Hm');  // 16位 IV（视后端设置）
+
+// base64 加密后的内容（可提前处理）
+const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
+const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
+
+function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
+  return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));
+}
+
+const AES_KEY = decodeBase64(encodedKey);
+const AES_IV = decodeBase64(encodedIv);
 
 // AES 解密函数
 function aesDecrypt(encryptedBase64: string): any {
@@ -23,6 +34,7 @@ function aesDecrypt(encryptedBase64: string): any {
 }
 
 // 统一请求函数
+// x-version 从1版本还是使用加密 每次审核的时候记得这个版本号
 function secureRequest<T>(url: string, data = {}): Promise<T> {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -30,7 +42,7 @@ function secureRequest<T>(url: string, data = {}): Promise<T> {
       method: 'POST',
       header: {
         'Content-Type': 'application/json',
-        'x-version': '1'
+        'x-version': '2'
       },
       data,
       success(res) {

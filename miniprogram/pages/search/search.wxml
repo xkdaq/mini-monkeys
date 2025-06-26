@@ -1,12 +1,12 @@
 <!--pages/search/search.wxml-->
 <view class="search-page">
   <view class="search-box">
-    <input class="search-input" placeholder="请输入完整的大学名称进行搜索，如:北京大学" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
+    <input class="search-input" placeholder="请输入大学名称进行搜索" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
   </view>
 
   <view class="list">
     <block wx:for="{{list}}" wx:key="id">
-      <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
+      <view class="list-item" bindtap="onItemTap" data-item="{{item}}">
         <view class="title-box">
           <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
           <text class="title">{{item.title}}</text>
