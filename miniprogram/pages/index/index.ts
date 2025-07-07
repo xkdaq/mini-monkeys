@@ -45,6 +45,11 @@ Page({
       const newList = refresh ? res.data : list.concat(res.data);
       const hasMore = res.data.length >= pageSize;
 
+      // const output = newList.slice(1, 29)
+      // .map((item, index) => `${index + 2}.${item.title}`)
+      // .join('\n');
+      // console.log(output);
+
       this.setData({
         list: newList,
         pageNum: pageNum,
