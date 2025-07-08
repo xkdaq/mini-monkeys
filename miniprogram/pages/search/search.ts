@@ -1,6 +1,6 @@
 // pages/search/search.ts
 
-import { getArticleList } from '../../utils/request';
+import { getSearchList } from '../../utils/request';
 
 Page({
 
@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    from: '',
     keywords: '',
+    placeholder: '请输入完整高校名称进行搜索',
     list: [],
     pageNum: 1,
     pageSize: 12,
@@ -18,6 +20,18 @@ Page({
 
   onInputChange(e: any) {
     this.setData({ keywords: e.detail.value });
+  },
+
+  onLoad(options) {
+    const from = options.from || '';
+    let placeholder = '请输入完整高校名称进行搜索';
+    if (from === 'wangpan') {
+      placeholder = '请输入资料名称进行搜索';
+    }
+    this.setData({
+      from:from,
+      placeholder:placeholder
+    });
   },
 
   async onSearch() {
@@ -42,7 +56,7 @@ Page({
   },
 
   async loadList(refresh: boolean) {
-    let { pageNum, pageSize, list, keywords } = this.data;
+    let { pageNum, pageSize, list, keywords, from } = this.data;
     if (!keywords.trim()) return;
 
     if (!refresh) {
@@ -53,7 +67,7 @@ Page({
 
     try {
       wx.showLoading({ title: '加载中...', mask: true });
-      const res = await getArticleList(pageNum, pageSize, keywords);
+      const res = await getSearchList(pageNum, pageSize, keywords, from);
 
       const newList = refresh ? res.data : list.concat(res.data);
       const hasMore = res.data.length >= pageSize;

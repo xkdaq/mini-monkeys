@@ -117,13 +117,16 @@ export function getArticleDetail(id: string): Promise<{ title: string; content: 
 }
 
 //搜索页面文章列表,在文章接口新加keywords
-export function getArticleList(
+export function getSearchList(
   pageNum: number,
   pageSize: number,
-  keywords = ''
+  keywords = '',
+  from: string = ''
 ): Promise<{ data: { title: string; date: string; id: string; isTop: number }[] }> {
-  const query = `/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&keywords=${encodeURIComponent(keywords)}`;
-
+  let query = `/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&keywords=${encodeURIComponent(keywords)}`;
+  if (from === 'wangpan') {
+    query += '&typeList=4,5';
+  }
   return secureRequest(query)
     .then((res: any) => {
       const rawList = res.rows || [];

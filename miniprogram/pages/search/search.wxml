@@ -1,7 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="search-page">
   <view class="search-box">
-    <input class="search-input" placeholder="请输入大学名称进行搜索" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
+    <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
   </view>
 
   <view class="list">
