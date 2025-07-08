@@ -1,11 +1,15 @@
 // pages/setting/setting.ts
+
+import { API_VERSION } from '../../utils/request';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    version: ''
+    version: '',
+    versionCode: ''
   },
 
   /**
@@ -15,7 +19,8 @@ Page({
     const accountInfo = wx.getAccountInfoSync();
     const version = accountInfo?.miniProgram?.version || '开发版';
     this.setData({
-      version
+      version: version,
+      versionCode: API_VERSION
     });
   },
 
