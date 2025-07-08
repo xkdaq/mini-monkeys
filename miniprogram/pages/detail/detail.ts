@@ -115,9 +115,20 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
+   * 分享好友
    */
   onShareAppMessage() {
+    return {
+      title: this.data.title || '猴哥星球'
+    };
+  },
 
+  /**
+   * 分享朋友圈
+   */
+  onShareTimeline() {
+    return {
+      title: this.data.title || '猴哥星球'
+    };
   }
 })

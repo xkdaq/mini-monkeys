@@ -1,0 +1,21 @@
+<!--pages/wangpan/wangpan.wxml-->
+<view class="wangpan-page">
+  <view class="search-box" bindtap="goToSearch">
+    <input class="search-input" placeholder="请输入关键词搜索" readonly disabled="true"/>
+  </view>
+
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="list-item" bindtap="onItemTap" data-item="{{item}}">
+        <view class="title-box">
+          <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
+          <text class="title">{{item.title}}</text>
+        </view>
+        <text class="date">{{item.date}}</text>
+      </view>
+      <view class="divider"></view>
+    </block>
+
+    <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
+  </view>
+</view>

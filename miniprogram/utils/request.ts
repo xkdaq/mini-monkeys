@@ -10,7 +10,7 @@ const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
 const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
 
 //小程序的版本号,从1开始支持加密请求，然后每次更新记得+1
-export const API_VERSION = '2'; 
+export const API_VERSION = '3'; 
 
 function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
   return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));
@@ -65,6 +65,7 @@ function secureRequest<T>(url: string, data = {}): Promise<T> {
   });
 }
 
+//文章列表
 export function getListData(pageNum: number, pageSize: number): Promise<{
   data: {
     title: string;
@@ -95,6 +96,7 @@ export function getListData(pageNum: number, pageSize: number): Promise<{
     });
 }
 
+//文章详情
 export function getArticleDetail(id: string): Promise<{ title: string; content: string }> {
   return secureRequest(`/api/article/details?id=${id}`)
     .then((res: any) => {
@@ -114,6 +116,7 @@ export function getArticleDetail(id: string): Promise<{ title: string; content: 
     });
 }
 
+//搜索页面文章列表,在文章接口新加keywords
 export function getArticleList(
   pageNum: number,
   pageSize: number,
@@ -135,5 +138,36 @@ export function getArticleList(
     .catch((err) => {
       wx.showToast({ title: '加载失败', icon: 'none' });
       return Promise.reject(err);
+    });
+}
+
+//网盘列表，文章列表修改，类型为4网盘免费,5网盘广告
+export function getWangpanData(pageNum: number, pageSize: number): Promise<{
+  data: {
+    title: string;
+    date: string;
+    id: string;
+    isTop: number;
+    type: number;
+    content: string;
+  }[]
+}> {
+  console.log('请求页码：', pageNum);
+  return secureRequest(`/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&typeList=4,5`)
+    .then((res: any) => {
+      const rawList = res.rows || [];
+      const formattedList = rawList.map((item: any) => ({
+        title: item.title,
+        date: item.date,
+        id: item.id,
+        isTop: item.isTop,
+        type: item.type,
+        content: item.content
+      }));
+      return { data: formattedList };
+    })
+    .catch((err) => {
+      console.error('获取文章列表失败', err);
+      throw err;
     });
 }

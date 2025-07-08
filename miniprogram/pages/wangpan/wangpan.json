@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "资料",
+  "navigationBarBackgroundColor": "#3EBFBE",
+  "navigationBarTextStyle": "white" ,
+  "enablePullDownRefresh": true
+}

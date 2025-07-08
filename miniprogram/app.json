@@ -5,7 +5,8 @@
     "pages/detail/detail",
     "pages/setting/setting",
     "pages/search/search",
-    "pages/webview/webview"
+    "pages/webview/webview",
+    "pages/wangpan/wangpan"
   ],
   "window": {
     "backgroundColor": "#F3F5F7",
@@ -21,6 +22,12 @@
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/wangpan/wangpan",
+        "text": "资料",
+        "iconPath": "images/wangpan.png",
+        "selectedIconPath": "images/wangpan_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",
