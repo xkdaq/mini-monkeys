@@ -7,7 +7,13 @@ let videoAd: WechatMiniprogram.RewardedVideoAd | null = null;
 
 Page({
   data: {
-    list: [] as { id: string; title: string; date: string; isTop: number }[],
+    list: [] as { 
+      id: string; 
+      title: string; 
+      date: string; 
+      isTop: number;
+      categoryList: string[]; 
+    }[],
     pageNum: 1,
     pageSize: 12,
     hasMore: true,

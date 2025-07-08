@@ -10,7 +10,7 @@ const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
 const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
 
 //小程序的版本号,从1开始支持加密请求，然后每次更新记得+1
-export const API_VERSION = '3'; 
+export const API_VERSION = '3';
 
 function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
   return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));
@@ -122,7 +122,13 @@ export function getSearchList(
   pageSize: number,
   keywords = '',
   from: string = ''
-): Promise<{ data: { title: string; date: string; id: string; isTop: number }[] }> {
+): Promise<{ data: { 
+  title: string; 
+  date: string; 
+  id: string; 
+  isTop: number;
+  categoryList: string[];
+}[] }> {
   let query = `/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&keywords=${encodeURIComponent(keywords)}`;
   if (from === 'wangpan') {
     query += '&typeList=4,5';
@@ -135,6 +141,8 @@ export function getSearchList(
         date: item.date,
         id: item.id,
         isTop: item.isTop,
+        type: item.type,
+        categoryList: item.categoryList
       }));
       return { data: formattedList };
     })
@@ -153,6 +161,7 @@ export function getWangpanData(pageNum: number, pageSize: number): Promise<{
     isTop: number;
     type: number;
     content: string;
+    categoryList: string[];
   }[]
 }> {
   console.log('请求页码：', pageNum);
@@ -165,7 +174,8 @@ export function getWangpanData(pageNum: number, pageSize: number): Promise<{
         id: item.id,
         isTop: item.isTop,
         type: item.type,
-        content: item.content
+        content: item.content,
+        categoryList: item.categoryList
       }));
       return { data: formattedList };
     })

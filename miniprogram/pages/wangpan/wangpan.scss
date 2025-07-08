@@ -29,7 +29,7 @@
         align-items: flex-start;
         gap: 10rpx;
       }
-  
+
       .top-tag {
         font-size: 13rpx;
         color: #ffffff;
@@ -51,12 +51,53 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-  
+
+      .info-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 14rpx;
+        gap: 12rpx;
+      }
+
       .date {
-        margin-top: 10rpx;
-        font-size: 20rpx;
+        font-size: 16rpx;
         color: #999;
-        text-align: left;
+        text-align: center;
+      }
+
+      .category-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8rpx;
+      }
+
+      .tag {
+        font-size: 16rpx;
+        color: #fff;
+        padding: 4rpx 12rpx;
+        border-radius: 6rpx;
+      }
+
+      // 5种背景色，可根据 index % 5 轮换使用
+      .tag-0 {
+        background-color: #8E68FE;
+      }
+
+      .tag-1 {
+        background-color: #52C41A;
+      }
+
+      .tag-2 {
+        background-color: #FFA940;
+      }
+
+      .tag-3 {
+        background-color: #1890FF;
+      }
+
+      .tag-4 {
+        background-color: #F759AB;
       }
     }
 
@@ -67,7 +108,7 @@
     }
 
   }
-  
+
   .loading {
     text-align: center;
     padding: 20rpx;

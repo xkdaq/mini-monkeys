@@ -11,7 +11,16 @@
           <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
           <text class="title">{{item.title}}</text>
         </view>
-        <text class="date">{{item.date}}</text>
+        <!-- <text class="date">{{item.date}}</text> -->
+        <view class="info-row">
+          <text class="date">{{item.date}}</text>
+          <!-- 分类标签 -->
+          <view class="category-tags">
+            <block wx:for="{{item.categoryList}}" wx:key="index">
+              <view class="tag tag-{{index % 5}}">{{item}}</view>
+            </block>
+          </view>
+        </view>
       </view>
       <view class="divider"></view>
     </block>
