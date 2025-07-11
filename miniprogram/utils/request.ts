@@ -10,7 +10,7 @@ const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
 const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
 
 //小程序的版本号,从1开始支持加密请求，然后每次更新记得+1
-export const API_VERSION = '3';
+export const API_VERSION = '4';
 
 function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
   return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));
@@ -130,9 +130,10 @@ export function getSearchList(
   categoryList: string[];
 }[] }> {
   let query = `/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}&keywords=${encodeURIComponent(keywords)}`;
-  if (from === 'wangpan') {
-    query += '&typeList=4,5';
-  }
+  // if (from === 'wangpan') {
+  //   query += '&typeList=4,5';
+  // }
+  query += '&typeList=0,1,2,3,4,5';
   return secureRequest(query)
     .then((res: any) => {
       const rawList = res.rows || [];

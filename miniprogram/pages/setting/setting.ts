@@ -2,6 +2,9 @@
 
 import { API_VERSION } from '../../utils/request';
 
+let logoClickCount = 0;
+let logoClickTimer: NodeJS.Timeout | null = null;
+
 Page({
 
   /**
@@ -22,6 +25,35 @@ Page({
       version: version,
       versionCode: API_VERSION
     });
+  },
+
+  onLogoTap() {
+    logoClickCount += 1;
+
+    if (logoClickCount >= 2) {
+      // 已点 2 次，加 1 次机会
+      let count = wx.getStorageSync('viewCount') || 0;
+      count -= 1;
+      wx.setStorageSync('viewCount', count);
+
+      wx.showToast({
+        title: `查看次数 +1（今日可用 ${10 - count} 次）`,
+        icon: 'none'
+      });
+
+      logoClickCount = 0; // 重置点击次数
+      if (logoClickTimer) {
+        clearTimeout(logoClickTimer);
+        logoClickTimer = null;
+      }
+    } else {
+      // 设置 2 秒内有效，否则清零
+      if (logoClickTimer) clearTimeout(logoClickTimer);
+      logoClickTimer = setTimeout(() => {
+        logoClickCount = 0;
+        logoClickTimer = null;
+      }, 2000);
+    }
   },
 
   /**

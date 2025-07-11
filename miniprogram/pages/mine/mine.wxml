@@ -12,9 +12,9 @@
       <image class="arrow" src="/images/icon-arrow-right.png" />
     </view>
 
-    <!-- <view class="menu-item" bindtap="goToAbout">
-      <image class="icon" src="/images/icon-about.png" />
-      <text class="label">关于我们</text>
+    <!-- <view class="menu-item" bindtap="goToCs">
+      <image class="icon" src="/images/icon-settings.png" />
+      <text class="label">联系我们</text>
       <image class="arrow" src="/images/icon-arrow-right.png" />
     </view> -->
   </view>

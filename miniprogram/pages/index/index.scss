@@ -18,7 +18,7 @@
   .list {
 
     .list-item {
-      padding: 24rpx;
+      padding: 24rpx 10rpx; /* 上下 24rpx，左右 10rpx */
       background-color: #ffffff;
       border-radius: 16rpx;
       // margin-bottom: 20rpx;

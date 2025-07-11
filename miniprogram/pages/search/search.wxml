@@ -13,7 +13,8 @@
         </view>
         <!-- <text class="date">{{item.date}}</text> -->
         <view class="info-row">
-          <text class="date">{{item.date}}</text>
+          <!-- <text class="date" wx:if="{{from !== 'wangpan'}}">{{item.date}}</text> -->
+          <text class="date" wx:if="{{item.type !== 4 && item.type !== 5}}">{{item.date}}</text>
           <!-- 分类标签 -->
           <view class="category-tags">
             <block wx:for="{{item.categoryList}}" wx:key="index">

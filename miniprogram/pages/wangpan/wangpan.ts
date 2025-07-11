@@ -129,16 +129,32 @@ Page({
         }
       });
     } else {
+      this.setData({
+        pendingId: id,
+        pendingType: type
+      });
+      //5 网盘广告免费
       if (type === 5 && videoAd) {
-        this.setData({
-          pendingId: id,
-          pendingType: type
-        });
-        videoAd.show().catch(() => {
-          videoAd!.load().then(() => videoAd!.show());
+        // videoAd.show().catch(() => {
+        //   videoAd!.load().then(() => videoAd!.show());
+        // });
+        wx.showModal({
+          title: '提示',
+          content: '观看一段广告，即可获得资源',
+          confirmText: '观看广告',
+          cancelText: '取消',
+          success: (res) => {
+            if (res.confirm) {
+              videoAd?.show().catch(() => {
+                videoAd!.load().then(() => videoAd!.show());
+              });
+            } else {
+              console.log('用户取消观看广告');
+            }
+          }
         });
       } else {
-        //0 跳转到详情页面  4网盘链接 复制按钮（待做）
+        //0 跳转到详情页面  4 网盘链接免费
         wx.navigateTo({
           url: `/pages/detail/detail?id=${id}&type=${type}`
         });

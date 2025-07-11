@@ -29,10 +29,11 @@ Page({
 
   onLoad(options) {
     const from = options.from || '';
-    let placeholder = '请输入完整高校名称进行搜索';
-    if (from === 'wangpan') {
-      placeholder = '请输入资料名称进行搜索';
-    }
+    // let placeholder = '请输入完整高校名称进行搜索';
+    // if (from === 'wangpan') {
+    //   placeholder = '请输入资料名称进行搜索';
+    // }
+    let placeholder = '请输入关键词进行搜索';
     this.setData({
       from: from,
       placeholder: placeholder
@@ -146,16 +147,31 @@ Page({
         }
       });
     } else {
-      //0 跳转到详情页面  4网盘链接 复制按钮（待做）
+      //0 跳转到详情页面  4网盘链接
       console.log('type=='+type);
       console.log('videoAd=='+videoAd);
+      this.setData({
+        pendingId: id,
+        pendingType: type
+      });
       if (type === 5 && videoAd) {
-        this.setData({
-          pendingId: id,
-          pendingType: type
-        });
-        videoAd.show().catch(() => {
-          videoAd!.load().then(() => videoAd!.show());
+        // videoAd.show().catch(() => {
+        //   videoAd!.load().then(() => videoAd!.show());
+        // });
+        wx.showModal({
+          title: '提示',
+          content: '观看一段广告，即可获得资源',
+          confirmText: '观看广告',
+          cancelText: '取消',
+          success: (res) => {
+            if (res.confirm) {
+              videoAd?.show().catch(() => {
+                videoAd!.load().then(() => videoAd!.show());
+              });
+            } else {
+              console.log('用户取消观看广告');
+            }
+          }
         });
       } else {
         wx.navigateTo({

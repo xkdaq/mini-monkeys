@@ -2,6 +2,7 @@
 // 获取应用实例
 
 import { getListData } from '../../utils/request';
+import { canViewToday, recordView } from '../../utils/viewLimit';
 
 Page({
   data: {
@@ -45,7 +46,7 @@ Page({
       const newList = refresh ? res.data : list.concat(res.data);
       const hasMore = res.data.length >= pageSize;
 
-      // const output = newList.slice(1, 29)
+      // const output = newList.slice(1, 38)
       // .map((item, index) => `${index + 2}.${item.title}`)
       // .join('\n');
       // console.log(output);
@@ -67,9 +68,30 @@ Page({
     // const id = e.currentTarget.dataset.id;
     const item = e.currentTarget.dataset.item;
     const { id, type, content } = item;
+
     console.log('跳转的 id 是：', id);
     const isHTML = /<\/?[a-z][\s\S]*>/i.test(content);
     const contentNew = isHTML ? content.replace(/<[^>]+>/g, '') : content;
+
+    if (!canViewToday()) {
+      wx.showModal({
+        title: '提示',
+        content: '今天首页查看次数已用完，试试上方搜索功能吧',
+        confirmText: '搜索',
+        cancelText: '取消',
+        success: (res) => {
+          if (res.confirm) {
+            this.goToSearch();
+          } else {
+            console.log('用户取消');
+          }
+        }
+      });
+      return;
+    }
+     // 👉 符合条件时记录一次点击
+    recordView();
+
     if (type === 1) {
       //1 打开外部链接
       wx.navigateTo({

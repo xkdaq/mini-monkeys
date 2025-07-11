@@ -19,7 +19,7 @@
   .list {
 
     .list-item {
-      padding: 24rpx;
+      padding: 24rpx 10rpx; /* 上下 24rpx，左右 10rpx */
       background-color: #ffffff;
       border-radius: 16rpx;
       // margin-bottom: 20rpx;
@@ -82,23 +82,33 @@
 
       // 5种背景色，可根据 index % 5 轮换使用
       .tag-0 {
-        background-color: #8E68FE;
+        background-color: #E6F7F7;
+        color: #3EBFBE;
+        border: 1px solid #3EBFBE;
       }
-
+      
       .tag-1 {
-        background-color: #52C41A;
+        background-color: #F6FFED;
+        color: #52C41A;
+        border: 1px solid #52C41A;
       }
-
+      
       .tag-2 {
-        background-color: #FFA940;
+        background-color: #FFF7E6;
+        color: #FA8C16;
+        border: 1px solid #FA8C16;
       }
-
+      
       .tag-3 {
-        background-color: #1890FF;
+        background-color: #E6F4FF;
+        color: #1890FF;
+        border: 1px solid #1890FF;
       }
-
+      
       .tag-4 {
-        background-color: #F759AB;
+        background-color: #FFF0F6;
+        color: #F759AB;
+        border: 1px solid #F759AB;
       }
 
     }
