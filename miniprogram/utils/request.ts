@@ -1,7 +1,7 @@
 
 import CryptoJS from 'crypto-js';
 
-const BASE_URL = 'https://api.monkeysxu.fun'; // 你自己的接口地址
+const BASE_URL = 'https://api.monkeysxu.top'; // 你自己的接口地址
 // const AES_KEY = CryptoJS.enc.Utf8.parse('47ccmuRaEWyYFmVn'); // 16位密钥
 // const AES_IV = CryptoJS.enc.Utf8.parse('K5i9TbRSthzaQ5Hm');  // 16位 IV（视后端设置）
 
@@ -10,7 +10,7 @@ const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
 const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
 
 //小程序的版本号,从1开始支持加密请求，然后每次更新记得+1
-export const API_VERSION = '4';
+export const API_VERSION = '5';
 
 function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
   return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));

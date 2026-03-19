@@ -10,7 +10,9 @@ Page({
     pageNum: 1,
     pageSize: 12,
     hasMore: true,
-    loadingMore: false
+    loadingMore: false,
+    isLoading: false,
+    isError: false
   },
 
   async onLoad() {
@@ -46,7 +48,7 @@ Page({
       const newList = refresh ? res.data : list.concat(res.data);
       const hasMore = res.data.length >= pageSize;
 
-      // const output = newList.slice(1, 38)
+      // const output = newList.slice(1, 105)
       // .map((item, index) => `${index + 2}.${item.title}`)
       // .join('\n');
       // console.log(output);
@@ -58,9 +60,11 @@ Page({
       });
     } catch (error) {
       console.error('加载失败:', error);
+      this.setData({ isError: true });
     } finally {
       wx.hideLoading();
       wx.stopPullDownRefresh(); // 避免下拉刷新时 loading 停不掉
+      this.setData({ isLoading: false });
     }
   },
 
