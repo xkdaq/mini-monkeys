@@ -1,128 +1,17 @@
+// 资料页样式 - 简洁清爽版
 .wangpan-page {
-  padding: 20rpx;
-  background-color: #ffffff;
+  padding: 24rpx;
   min-height: 100vh;
   box-sizing: border-box;
 
-  .search-box {
-    background-color: #f2f2f2;
-    padding: 16rpx 24rpx;
-    border-radius: 12rpx;
-    margin-bottom: 24rpx;
-  }
-
-  .search-input {
-    font-size: 28rpx;
-  }
-
-  .list {
-
-    .list-item {
-      padding: 24rpx 10rpx; /* 上下 24rpx，左右 10rpx */
-      background-color: #ffffff;
-      border-radius: 16rpx;
-      // margin-bottom: 20rpx;
-      // box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
-
-      .title-box {
-        display: flex;
-        align-items: flex-start;
-        gap: 10rpx;
-      }
-
-      .top-tag {
-        font-size: 13rpx;
-        color: #ffffff;
-        background-color: #FF4D4F;
-        padding: 2rpx 6rpx;
-        border-radius: 6rpx;
-        line-height: 20rpx;
-      }
-
-      .title {
-        font-size: 32rpx;
-        font-weight: bold;
-        color: #333;
-        line-height: 44rpx;
-        height: 44rpx; // 1行的高度
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .info-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 14rpx;
-        gap: 12rpx;
-      }
-
-      .date {
-        font-size: 16rpx;
-        color: #999;
-        text-align: center;
-      }
-
-      .category-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8rpx;
-      }
-
-      .tag {
-        font-size: 15rpx;
-        color: #fff;
-        padding: 4rpx 10rpx;
-        border-radius: 6rpx;
-      }
-
-      .tag-0 {
-        background-color: #E6F7F7;
-        color: #3EBFBE;
-        border: 1px solid #3EBFBE;
-      }
-      
-      .tag-1 {
-        background-color: #F6FFED;
-        color: #52C41A;
-        border: 1px solid #52C41A;
-      }
-      
-      .tag-2 {
-        background-color: #FFF7E6;
-        color: #FA8C16;
-        border: 1px solid #FA8C16;
-      }
-      
-      .tag-3 {
-        background-color: #E6F4FF;
-        color: #1890FF;
-        border: 1px solid #1890FF;
-      }
-      
-      .tag-4 {
-        background-color: #FFF0F6;
-        color: #F759AB;
-        border: 1px solid #F759AB;
-      }
-
+  .search-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16rpx;
+    
+    .search-icon-text {
+      font-size: 32rpx;
     }
-
-    .divider {
-      height: 1px;
-      background-color: #f0f0f0;
-      margin: 0;
-    }
-
-  }
-
-  .loading {
-    text-align: center;
-    padding: 20rpx;
-    font-size: 26rpx;
-    color: #666;
   }
 }

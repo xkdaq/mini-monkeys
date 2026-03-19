@@ -1,9 +1,15 @@
 <!--pages/search/search.wxml-->
 <view class="search-page">
+  <!-- 搜索框 -->
   <view class="search-box">
-    <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keyword}}" />
+    <view class="search-icon-wrap">
+      <text class="search-icon-text">🔍</text>
+    </view>
+    <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keywords}}" />
+    <view class="search-btn" bindtap="onSearch">搜索</view>
   </view>
 
+  <!-- 列表 -->
   <view class="list">
     <block wx:for="{{list}}" wx:key="id">
       <view class="list-item" bindtap="onItemTap" data-item="{{item}}">
@@ -11,27 +17,25 @@
           <view wx:if="{{item.isTop == 1}}" class="top-tag">置顶</view>
           <text class="title">{{item.title}}</text>
         </view>
-        <!-- <text class="date">{{item.date}}</text> -->
         <view class="info-row">
-          <!-- <text class="date" wx:if="{{from !== 'wangpan'}}">{{item.date}}</text> -->
           <text class="date" wx:if="{{item.type !== 4 && item.type !== 5}}">{{item.date}}</text>
           <!-- 分类标签 -->
           <view class="category-tags">
-            <block wx:for="{{item.categoryList}}" wx:key="index">
-              <view class="tag tag-{{index % 5}}">{{item}}</view>
+            <block wx:for="{{item.categoryList}}" wx:key="index" wx:for-item="tag">
+              <view class="tag tag-{{index % 5}}">{{tag}}</view>
             </block>
           </view>
         </view>
       </view>
-      <view class="divider"></view>
     </block>
 
     <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
   </view>
 
+  <!-- 空状态 -->
   <view wx:if="{{!loadingMore && list.length === 0}}" class="empty-box">
-    <image class="empty-icon" src="/images/icon-empty.png" />
+    <text class="empty-icon">📭</text>
     <text class="empty-text">暂无数据</text>
+    <text class="empty-hint">换个关键词试试</text>
   </view>
-
 </view>
