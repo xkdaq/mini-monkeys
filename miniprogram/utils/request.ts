@@ -10,7 +10,7 @@ const encodedKey = 'NDdjY211UmFFV3lZRm1Wbg==' // '47ccmuRaEWyYFmVn' 的 base64
 const encodedIv = 'SzVpOVRiUlN0aHphUTVIbQ==' // 'K5i9TbRSthzaQ5Hm' 的 base64
 
 //小程序的版本号,从1开始支持加密请求，然后每次更新记得+1
-export const API_VERSION = '6';
+export const API_VERSION = '7';
 
 function decodeBase64(encoded: string): CryptoJS.lib.WordArray {
   return CryptoJS.enc.Utf8.parse(CryptoJS.enc.Base64.parse(encoded).toString(CryptoJS.enc.Utf8));
@@ -66,7 +66,7 @@ function secureRequest<T>(url: string, data = {}): Promise<T> {
 }
 
 //文章列表
-export function getListData(pageNum: number, pageSize: number): Promise<{
+export function getListData(pageNum: number, pageSize: number, keywords = ''): Promise<{
   data: {
     title: string;
     date: string;
@@ -77,7 +77,11 @@ export function getListData(pageNum: number, pageSize: number): Promise<{
   }[]
 }> {
   console.log('请求页码：', pageNum);
-  return secureRequest(`/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}`)
+  let query = `/api/article/list?pageNum=${pageNum}&pageSize=${pageSize}`;
+  if (keywords) {
+    query += `&keywords=${encodeURIComponent(keywords)}`;
+  }
+  return secureRequest(query)
     .then((res: any) => {
       const rawList = res.rows || [];
       const formattedList = rawList.map((item: any) => ({
@@ -182,6 +186,95 @@ export function getWangpanData(pageNum: number, pageSize: number): Promise<{
     })
     .catch((err) => {
       console.error('获取文章列表失败', err);
+      throw err;
+    });
+}
+
+// 首页数据接口
+export interface HomeBanner {
+  id: number;
+  title: string;
+  imageUrl: string;
+  linkUrl: string;
+}
+
+export interface HomeNotice {
+  id: number;
+  title: string;
+  content: string;
+}
+
+export interface HomeArticle {
+  id: string;
+  title: string;
+  date: string;
+  isTop: number;
+  type: number;
+  content: string;
+}
+
+export interface HomePanArticle {
+  id: string;
+  title: string;
+  date: string;
+  isTop: number;
+  type: number;
+  content: string;
+  categoryList: string[];
+}
+
+export interface HomeIndexData {
+  bannerList: HomeBanner[];
+  noticeList: HomeNotice[];
+  articleList: HomeArticle[];
+  panArticleList: HomePanArticle[];
+}
+
+export function getHomeIndexData(
+  bannerLimit: number = 3,
+  noticeLimit: number = 3,
+  articleLimit: number = 5,
+  panArticleLimit: number = 5
+): Promise<HomeIndexData> {
+  const query = `/api/home/index?bannerLimit=${bannerLimit}&noticeLimit=${noticeLimit}&articleLimit=${articleLimit}&panArticleLimit=${panArticleLimit}`;
+  return secureRequest<HomeIndexData>(query)
+    .then((res: any) => {
+      if (res && res.data) {
+        return {
+          bannerList: (res.data.bannerList || []).map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            imageUrl: item.imageUrl,
+            linkUrl: item.linkUrl
+          })),
+          noticeList: (res.data.noticeList || []).map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            content: item.content
+          })),
+          articleList: (res.data.articleList || []).map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            date: item.date,
+            isTop: item.isTop,
+            type: item.type,
+            content: item.content
+          })),
+          panArticleList: (res.data.panArticleList || []).map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            date: item.date,
+            isTop: item.isTop,
+            type: item.type,
+            content: item.content,
+            categoryList: item.categoryList || []
+          }))
+        };
+      }
+      throw new Error('获取首页数据失败');
+    })
+    .catch((err) => {
+      console.error('获取首页数据失败', err);
       throw err;
     });
 }

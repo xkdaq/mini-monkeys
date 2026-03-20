@@ -1,8 +1,9 @@
-// 资料页样式 - 简洁清爽版
-.wangpan-page {
+// 网盘列表页面样式
+.pan-list-page {
   padding: 24rpx;
   min-height: 100vh;
   box-sizing: border-box;
+  padding-bottom: 120rpx;
 
   .search-icon-wrap {
     display: flex;
@@ -14,5 +15,11 @@
       width: 36rpx;
       height: 36rpx;
     }
+  }
+
+  .clear-btn {
+    font-size: 28rpx;
+    color: #999999;
+    padding: 0 16rpx;
   }
 }

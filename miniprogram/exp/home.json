@@ -1,0 +1,70 @@
+{
+  "code" : 0,
+  "msg" : "操作成功",
+  "data" : {
+    "bannerList" : [ {
+      "createBy" : "admin",
+      "createTime" : "2026-03-20 15:44:18",
+      "updateBy" : "",
+      "updateTime" : null,
+      "remark" : "首页轮播图1",
+      "id" : 1,
+      "title" : "欢迎访问",
+      "imageUrl" : "https://picsum.photos/750/300?random=1",
+      "linkUrl" : "/pages/index/index",
+      "sort" : 1,
+      "status" : "0"
+    } ],
+    "noticeList" : [ {
+      "createBy" : "admin",
+      "createTime" : "2026-03-20 15:44:18",
+      "updateBy" : "",
+      "updateTime" : null,
+      "remark" : "系统维护",
+      "id" : 1,
+      "title" : "系统维护通知",
+      "content" : "系统将于今晚12点进行维护，预计维护时间2小时",
+      "noticeType" : "1",
+      "sort" : 1,
+      "status" : "0"
+    } ],
+    "articleList" : [ {
+      "createBy" : null,
+      "createTime" : "2025-09-29 12:16:10",
+      "updateBy" : null,
+      "updateTime" : null,
+      "remark" : null,
+      "id" : 803,
+      "title" : "天津工业大学2026年硕士研究生招生学科专业目录",
+      "content" : null,
+      "date" : "2025-09-29",
+      "type" : 0,
+      "isTop" : 0,
+      "label" : null,
+      "category" : null,
+      "labelList" : [ ],
+      "categoryList" : [ ],
+      "keywords" : null,
+      "typeList" : null
+    } ],
+    "panArticleList" : [ {
+      "createBy" : null,
+      "createTime" : "2025-12-05 17:26:13",
+      "updateBy" : null,
+      "updateTime" : null,
+      "remark" : null,
+      "id" : 825,
+      "title" : "26考研政治冲刺汇总",
+      "content" : null,
+      "date" : "2025-12-05",
+      "type" : 5,
+      "isTop" : 0,
+      "label" : null,
+      "category" : "1,11",
+      "labelList" : [ ],
+      "categoryList" : [ "考研政治", "看广告免费" ],
+      "keywords" : null,
+      "typeList" : null
+    } ]
+  }
+}

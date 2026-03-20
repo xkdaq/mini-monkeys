@@ -6,7 +6,9 @@
     "pages/setting/setting",
     "pages/search/search",
     "pages/webview/webview",
-    "pages/wangpan/wangpan"
+    "pages/wangpan/wangpan",
+    "pages/article-list/article-list",
+    "pages/pan-list/pan-list"
   ],
   "window": {
     "backgroundColor": "#F3F5F7",

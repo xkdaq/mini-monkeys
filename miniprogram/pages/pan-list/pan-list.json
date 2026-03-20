@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "网盘资源",
+  "navigationBarBackgroundColor": "#3EBFBE",
+  "navigationBarTextStyle": "white" ,
+  "enablePullDownRefresh": true
+}

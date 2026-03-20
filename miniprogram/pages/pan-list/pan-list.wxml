@@ -1,11 +1,12 @@
-<!--pages/wangpan/wangpan.wxml-->
-<view class="wangpan-page">
+<view class="pan-list-page">
   <!-- 搜索框 -->
-  <view class="search-box" bindtap="goToSearch">
+  <view class="search-box">
     <view class="search-icon-wrap">
       <image class="search-icon-img" src="/images/search.png" mode="aspectFit" />
     </view>
-    <input class="search-input" placeholder="请输入关键词搜索" readonly disabled="true" />
+    <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="onInputChange" bindconfirm="onSearch" value="{{keywords}}" />
+    <view wx:if="{{keywords}}" class="clear-btn" bindtap="onClearSearch">✕</view>
+    <view class="search-btn" bindtap="onSearch">搜索</view>
   </view>
 
   <!-- 列表 -->
@@ -28,5 +29,10 @@
     </block>
 
     <view wx:if="{{loadingMore}}" class="loading">加载中...</view>
+    <view wx:if="{{!loadingMore && list.length === 0 && !isLoading}}" class="empty-box">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无数据</text>
+      <text class="empty-hint">换个关键词试试</text>
+    </view>
   </view>
 </view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "文章列表",
+  "navigationBarBackgroundColor": "#3EBFBE",
+  "navigationBarTextStyle": "white" ,
+  "enablePullDownRefresh": true
+}
